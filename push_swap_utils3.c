@@ -1,51 +1,42 @@
 #include "./libft/libft.h"
 #include "./ft_printf/ft_printf.h"
-#include "./get_next_line/get_next_line.h"
 #include "push_swap.h"
 
-int	insertElements(t_list **stack_a, char **argv)
+void	rra(t_list **stack_a)
 {
-	int	*a;
-	int	i;
-	
-	i = 0;
-	*stack_a = NULL;
-	while (argv[i])
-	{
-		if (!checkinput(argv[i]))
-		{
-			ft_printf("Error\n");
-			ft_lstclear(stack_a, free);
-			return (0);
-		}
-		a = malloc(sizeof(int));
-		if (!a)
-		{
-			ft_lstclear(stack_a, free);
-			return (0);
-		}
-		*a = ft_atoi(argv[i]);
-		ft_lstadd_back(stack_a, ft_lstnew(a));
-		i++;
-	}
-	return (1);
+	t_list	*last;
+	t_list	*prev;
+
+	if (!stack_a || !*stack_a || !(*stack_a)->next)
+		return ;
+	prev = *stack_a;
+	while (prev->next && prev->next->next)
+		prev = prev->next;
+	last = ft_lstlast(*stack_a);
+	prev->next = NULL;
+	ft_lstadd_front(stack_a, last);
+	ft_printf("rra\n");
 }
 
-int	checkinput(char *str)
+void	rrb(t_list **stack_b)
 {
-	int	i = 0;
+	t_list	*last;
+	t_list	*prev;
 
-	if (!str || !*str)
-		return (0);
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	if (!str[i])
-		return (0);
-	while (str[i])
-	{
-		if (str[i] < '0' || str[i] > '9')
-			return (0);
-		i++;
-	}
-	return (1);
+	if (!stack_b || !*stack_b || !(*stack_b)->next)
+		return ;
+	prev = *stack_b;
+	while (prev->next && prev->next->next)
+		prev = prev->next;
+	last = ft_lstlast(*stack_b);
+	prev->next = NULL;
+	ft_lstadd_front(stack_b, last);
+	ft_printf("rrb\n");
+}
+
+void	rrr(t_list **stack_a, t_list **stack_b)
+{
+	rra(stack_a);
+	rrb(stack_b);
+	ft_printf("rrr\n");
 }

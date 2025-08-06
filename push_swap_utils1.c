@@ -1,37 +1,58 @@
 #include "./libft/libft.h"
+#include "./ft_printf/ft_printf.h"
 #include "push_swap.h"
 
-int	fd_renew(int fd)
-{
-	close(fd);
-	fd = open("Data.txt", O_RDWR, 0644);
-	return (fd);
-}
-
-void	swap(t_list **lst)
+void	sa(t_list **stack_a)
 {
 	void	*content;
 
-	if (!lst || !*lst || !(*lst)->next)
+	if (!stack_a || !*stack_a || !(*stack_a)->next)
 		return ;
-	content = (*lst)->content;
-	(*lst)->content = (*lst)->next->content;
-	(*lst)->next->content = content;
+	content = (*stack_a)->content;
+	(*stack_a)->content = (*stack_a)->next->content;
+	(*stack_a)->next->content = content;
+	ft_printf("sa\n");
 }
 
-void	swap_all(t_list **stackA, t_list **stackB)
+void	sb(t_list **stack_b)
 {
-	swap(stackA);
-	swap(stackB);
+	void	*content;
+
+	if (!stack_b || !*stack_b || !(*stack_b)->next)
+		return ;
+	content = (*stack_b)->content;
+	(*stack_b)->content = (*stack_b)->next->content;
+	(*stack_b)->next->content = content;
+	ft_printf("sb\n");
 }
 
-void	push(t_list **target, t_list **package)
+void	ss(t_list **stack_a, t_list **stack_b)
 {
-	t_list	*package_next;
+	sa(stack_a);
+	sb(stack_b);
+	ft_printf("ss\n");
+}
 
-	if (!package || !*package)
+void	pa(t_list **stack_a, t_list **stack_b)
+{
+	t_list	*stack_b_next;
+
+	if (!stack_b || !*stack_b)
 		return ;
-	package_next = (*package)->next;
-	ft_lstadd_front(target, *package);
-	*package = package_next;
+	stack_b_next = (*stack_b)->next;
+	ft_lstadd_front(stack_a, *stack_b);
+	*stack_b = stack_b_next;
+	ft_printf("pa\n");
+}
+
+void	pb(t_list **stack_b, t_list **stack_a)
+{
+	t_list	*stack_a_next;
+
+	if (!stack_a || !*stack_a)
+		return ;
+	stack_a_next = (*stack_a)->next;
+	ft_lstadd_front(stack_b, *stack_a);
+	*stack_a = stack_a_next;
+	ft_printf("pb\n");
 }

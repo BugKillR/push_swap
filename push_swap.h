@@ -4,15 +4,33 @@
 # include <fcntl.h>
 # include <unistd.h>
 
-void	swap_a(t_list **lst);
-void	swap_all(t_list **stackA, t_list **stackB);
-void	push(t_list **target, t_list **package);
-void	rotate(t_list **lst);
-void	rotate_all(t_list **stackA, t_list **stackB);
-void	reverse_rotate(t_list **lst);
-void	rr_all(t_list **stackA, t_list **stackB);
+//  swap operations
+
+void	sa(t_list **stack_a);
+void	sb(t_list **stack_b);
+void	ss(t_list **stack_a, t_list **stack_b);
+
+//  push operations
+
+void	pa(t_list **stack_a, t_list **stack_b);
+void	pb(t_list **stack_b, t_list **stack_a);
+
+//  rotate operations
+
+void	ra(t_list **stack_a);
+void	rb(t_list **stack_b);
+void	rr(t_list **stack_a, t_list **stack_b);
+
+//  reverse rotate operations
+
+void	rra(t_list **stack_a);
+void	rrb(t_list **stack_b);
+void	rrr(t_list **stack_a, t_list **stack_b);
+
+//  other functions
 
 int	    insertElements(t_list **stack_a, char **argv);
 int	    checkinput(char *str);
+int	    findmin(t_list *stack);
 
 #endif
