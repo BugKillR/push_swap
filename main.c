@@ -1,83 +1,85 @@
 #include "./libft/libft.h"
+#include "./ft_printf/ft_printf.h"
+#include "./get_next_line/get_next_line.h"
 #include "push_swap.h"
 #include <stdio.h>
 
-int	checkinput(char *str)
+static int	checkinput(char *str, int fd)
 {
 	int	i;
 
 	i = 0;
 	while (str[i])
 	{
+		if (str[i] == '-' || str[i] == '+')
+			write(fd, &str[i++], 1);
 		if (!('0' <= str[i] && str[i] <= '9'))
-			return(0);
-		i++;
+			return (0);
+		write(fd, &str[i++], 1);
 	}
-	return(1);
+	write(fd, "\n", 1);
+	return (1);
 }
 
-int main(int argc, char *argv[])
+static void	insertelements(t_list **stackA, int fd)
 {
-    t_list  *stackA = NULL;
-    t_list  *stackB = NULL;
-    t_list  *temp;
-    int			i;
+	char	*read;
+	int		*a;
 
-    if (argc < 2)
-        return (1);
-    i = 1;
-    while (i < argc)
+	*stackA = NULL;
+	fd_renew(fd);
+	read = get_next_line(fd);
+	if (!read)
+		return ;
+	while (read)
 	{
-		if (!stackA)
-			stackA = ft_lstnew(ft_strdup(argv[i]));
-		else
-			ft_lstadd_back(&stackA, ft_lstnew(ft_strdup(argv[i])));
-		i++;
+		a = malloc(sizeof(int));
+		if (!a)
+		{
+			ft_lstclear(stackA, free);
+			return ;
+		}
+		*a = ft_atoi(read);
+		ft_lstadd_back(stackA, ft_lstnew(a));
+		free(read);
+		read = get_next_line(fd);
 	}
+	fd_renew(fd);
+}
 
-	printf("Old StackA: ");
+int	main(int argc, char *argv[])
+{
+	t_list	*stack_a;
+	//t_list	*stack_b;
+	int		fd;
 
-	temp = stackA;
-	while (temp)
+	if (argc < 2)
+		return (1);
+	fd = open("Data.txt", O_CREAT | O_RDWR | O_TRUNC, 0644);
+	argv++;
+	while (*argv)
 	{
-		printf("%s ", (char *)temp->content);
+		if (!checkinput(*argv, fd))
+		{
+			ft_printf("Error\n");
+			return (1);
+		}
+		argv++;
+	}
+	insertelements(&stack_a, fd); // Elemanlar listeye atılıyor ve integer'a çeviriliyor.
+
+	// Yazdırma testi
+
+	t_list	*temp;
+	temp = stack_a;
+	while(temp)
+	{
+		ft_printf("%d\n", *(int *)temp->content);
 		temp = temp->next;
 	}
 
-	push(&stackB, &stackA);
-	push(&stackB, &stackA);
+	// Yazdırma testi
 
-	printf("\nNew StackA: ");
-
-	temp = stackA;
-	while (temp)
-	{
-		printf("%s ", (char *)temp->content);
-		temp = temp->next;
-	}
-
-	printf("\n~~~ StackB: ");
-
-	temp = stackB;
-	while (temp)
-	{
-		printf("%s ", (char *)temp->content);
-		temp = temp->next;
-	}
-
-	printf("\nNew StackA: ");
-
-	rotate(&stackA);
-	temp = stackA;
-	while (temp)
-	{
-		printf("%s ", (char *)temp->content);
-		temp = temp->next;
-	}
-
-	printf("\n");
-
-	ft_lstclear(&stackA, free);
-    ft_lstclear(&stackB, free);
+	ft_lstclear(&stack_a, free);
 	return (0);
 }

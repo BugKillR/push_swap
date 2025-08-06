@@ -1,6 +1,13 @@
 #include "./libft/libft.h"
 #include "push_swap.h"
 
+int	fd_renew(int fd)
+{
+	close(fd);
+	fd = open("Data.txt", O_RDWR, 0644);
+	return (fd);
+}
+
 void	swap(t_list **lst)
 {
 	void	*content;

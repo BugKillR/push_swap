@@ -31,6 +31,7 @@ void	reverse_rotate(t_list **lst)
 	prev = *lst;
 	while (prev->next && prev->next->next)
 		prev = prev->next;
+	last = ft_lstlast(*lst);
 	prev->next = NULL;
 	ft_lstadd_front(lst, last);
 }
