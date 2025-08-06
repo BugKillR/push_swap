@@ -10,9 +10,9 @@ GET_NEXT_LINE_DIR = ./get_next_line
 SRCSGNL = $(GET_NEXT_LINE_DIR)/*_bonus.c
 OBJSGNL = $(SRCSGNL:.c=.o)
 
-SRCS = push_swap.c \
-		push_swap_utils1.c \
-		push_swap_utils2.c
+SRCS = push_swap_utils1.c \
+		push_swap_utils2.c \
+		push_swap_utils3.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -12,6 +12,7 @@ void	rotate_all(t_list **stackA, t_list **stackB);
 void	reverse_rotate(t_list **lst);
 void	rr_all(t_list **stackA, t_list **stackB);
 
-int		fd_renew(int fd);
+int	    insertElements(t_list **stack_a, char **argv);
+int	    checkinput(char *str);
 
 #endif
