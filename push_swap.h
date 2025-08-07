@@ -33,4 +33,8 @@ int	    insertElements(t_list **stack_a, char **argv);
 int	    checkinput(char *str);
 int	    findmin(t_list *stack);
 
+//  helper funct (REMOVE LATER)
+
+void    print_stacks(t_list *stack_a, t_list *stack_b);
+
 #endif

@@ -6,7 +6,8 @@ LIBFT = $(LIBFT_DIR)/libft.a
 PRINTF_DIR = ./ft_printf
 PRINTF = $(PRINTF_DIR)/libftprintf.a
 
-SRCS = push_swap_utils1.c \
+SRCS = debug.c \
+		push_swap_utils1.c \
 		push_swap_utils2.c \
 		push_swap_utils3.c \
 		push_swap_utils4.c
