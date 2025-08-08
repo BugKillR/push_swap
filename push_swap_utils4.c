@@ -2,13 +2,14 @@
 #include "./ft_printf/ft_printf.h"
 #include "push_swap.h"
 
-int	insertElements(t_list **stack_a, char **argv)
+int	insertElements(t_list **stack_a, t_list **stack_b, char **argv)
 {
 	int	*a;
 	int	i;
 	
 	i = 0;
 	*stack_a = NULL;
+	*stack_b = NULL;
 	while (argv[i])
 	{
 		if (!checkinput(argv[i]))
@@ -49,25 +50,27 @@ int	checkinput(char *str)
 	return (1);
 }
 
-int	findmin(t_list *stack)
+t_algorithm	decide_algorithm(t_list	*stack_a)
 {
-	int	min;
-	int	index;
-	int	k;
+	int	stack_size;
 
-	min = *(int *)stack->content;
-	stack = stack->next;
-	index = 0;
-	k = 1;
-	while(stack)
-	{
-		if (min > *(int *)stack->content)
-		{
-			min = *(int *)stack->content;
-			index = k;
-		}
-		stack = stack->next;
-		k++;
-	}
-	return (index);
+	stack_size = ft_lstsize(stack_a);
+	if (stack_size < 2)
+		return (0);
+	else if (stack_size == 2)
+		return (1);
+	else if (2 < stack_size && stack_size <= 5)
+		return (2);
+	else if (5 < stack_size && stack_size <= 100)
+		return (3);
+	else
+		return (4);
+}
+
+void	clear_stacks(t_list **stack_a, t_list **stack_b)
+{
+	if (*stack_a)
+		ft_lstclear(stack_a, free);
+	if (*stack_b)
+		ft_lstclear(stack_b, free);
 }

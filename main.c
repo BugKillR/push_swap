@@ -4,24 +4,18 @@
 
 int	main(int argc, char *argv[])
 {
-	t_list	*stack_a;
-	t_list	*stack_b = NULL;
+	t_list		*stack_a;
+	t_list		*stack_b;
 
 	if (argc < 2)
 		return (1);
 	argv++;
-	if (!insertElements(&stack_a, argv))
+	if (!insertElements(&stack_a, &stack_b, argv))
 		return (1);
-	
-	// Yazdırma testi
-
-	pb(&stack_b, &stack_a);
-	pb(&stack_b, &stack_a);
 	print_stacks(stack_a, stack_b);
-
-	if(stack_a)
-		ft_lstclear(&stack_a, free);
-	if(stack_b)
-		ft_lstclear(&stack_b, free);
+	if (!sort(decide_algorithm(stack_a), &stack_a, &stack_b))
+		return (0);
+	print_stacks(stack_a, stack_b);
+	clear_stacks(&stack_a, &stack_b);
 	return (0);
 }

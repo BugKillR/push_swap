@@ -4,6 +4,14 @@
 # include <fcntl.h>
 # include <unistd.h>
 
+typedef enum e_algorithm {
+	Empty,
+	TwoElement,
+	ThreeToFive,
+	Insertion,
+	Greedy
+}	t_algorithm;
+
 //  swap operations
 
 void	sa(t_list **stack_a);
@@ -29,12 +37,19 @@ void	rrr(t_list **stack_a, t_list **stack_b);
 
 //  other functions
 
-int	    insertElements(t_list **stack_a, char **argv);
-int	    checkinput(char *str);
-int	    findmin(t_list *stack);
+t_algorithm	decide_algorithm(t_list	*stack_a);
+void		clear_stacks(t_list **stack_a, t_list **stack_b);
+int			insertElements(t_list **stack_a, t_list **stack_b, char **argv);
+int			checkinput(char *str);
+int			findmin(t_list *stack);
+
+//	sort
+
+t_algorithm	sort(t_algorithm algorithm, t_list **stack_a, t_list **stack_b);
+void    	FTwoElements(t_list **stack_a);
 
 //  helper funct (REMOVE LATER)
 
-void    print_stacks(t_list *stack_a, t_list *stack_b);
+void	print_stacks(t_list *stack_a, t_list *stack_b);
 
 #endif
