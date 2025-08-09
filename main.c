@@ -4,8 +4,8 @@
 
 int	main(int argc, char *argv[])
 {
-	t_list		*stack_a;
-	t_list		*stack_b;
+	t_greedy	*stack_a;
+	t_greedy	*stack_b;
 
 	if (argc < 2)
 		return (1);
@@ -13,8 +13,6 @@ int	main(int argc, char *argv[])
 	if (!insertElements(&stack_a, &stack_b, argv))
 		return (1);
 	print_stacks(stack_a, stack_b);
-	if (!sort(decide_algorithm(stack_a), &stack_a, &stack_b))
-		return (0);
 	print_stacks(stack_a, stack_b);
 	clear_stacks(&stack_a, &stack_b);
 	return (0);

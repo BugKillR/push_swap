@@ -2,7 +2,7 @@
 #include "./ft_printf/ft_printf.h"
 #include "push_swap.h"
 
-void	sa(t_list **stack_a)
+void	sa(t_greedy **stack_a)
 {
 	void	*content;
 
@@ -14,7 +14,7 @@ void	sa(t_list **stack_a)
 	ft_printf("sa\n");
 }
 
-void	sb(t_list **stack_b)
+void	sb(t_greedy **stack_b)
 {
 	void	*content;
 
@@ -26,33 +26,33 @@ void	sb(t_list **stack_b)
 	ft_printf("sb\n");
 }
 
-void	ss(t_list **stack_a, t_list **stack_b)
+void	ss(t_greedy **stack_a, t_greedy **stack_b)
 {
 	sa(stack_a);
 	sb(stack_b);
 	ft_printf("ss\n");
 }
 
-void	pa(t_list **stack_a, t_list **stack_b)
+void	pa(t_greedy **stack_a, t_greedy **stack_b)
 {
-	t_list	*stack_b_next;
+	t_greedy	*stack_b_next;
 
 	if (!stack_b || !*stack_b)
 		return ;
 	stack_b_next = (*stack_b)->next;
-	ft_lstadd_front(stack_a, *stack_b);
+	lstadd_front(stack_a, *stack_b);
 	*stack_b = stack_b_next;
 	ft_printf("pa\n");
 }
 
-void	pb(t_list **stack_b, t_list **stack_a)
+void	pb(t_greedy **stack_b, t_greedy **stack_a)
 {
-	t_list	*stack_a_next;
+	t_greedy	*stack_a_next;
 
 	if (!stack_a || !*stack_a)
 		return ;
 	stack_a_next = (*stack_a)->next;
-	ft_lstadd_front(stack_b, *stack_a);
+	lstadd_front(stack_b, *stack_a);
 	*stack_a = stack_a_next;
 	ft_printf("pb\n");
 }

@@ -2,7 +2,7 @@
 #include "./ft_printf/ft_printf.h"
 #include "push_swap.h"
 
-int	insertElements(t_list **stack_a, t_list **stack_b, char **argv)
+int	insertElements(t_greedy **stack_a, t_greedy **stack_b, char **argv) // burada kaldın, lstnew'i t_greedy'e göre yeniden yaz
 {
 	int	*a;
 	int	i;
@@ -15,17 +15,17 @@ int	insertElements(t_list **stack_a, t_list **stack_b, char **argv)
 		if (!checkinput(argv[i]))
 		{
 			ft_printf("Error\n");
-			ft_lstclear(stack_a, free);
+			lstclear(stack_a, free);
 			return (0);
 		}
 		a = malloc(sizeof(int));
 		if (!a)
 		{
-			ft_lstclear(stack_a, free);
+			lstclear(stack_a, free);
 			return (0);
 		}
 		*a = ft_atoi(argv[i]);
-		ft_lstadd_back(stack_a, ft_lstnew(a));
+		lstadd_back(stack_a, lstnew(a));
 		i++;
 	}
 	return (1);
@@ -50,27 +50,10 @@ int	checkinput(char *str)
 	return (1);
 }
 
-t_algorithm	decide_algorithm(t_list	*stack_a)
-{
-	int	stack_size;
-
-	stack_size = ft_lstsize(stack_a);
-	if (stack_size < 2)
-		return (0);
-	else if (stack_size == 2)
-		return (1);
-	else if (2 < stack_size && stack_size <= 5)
-		return (2);
-	else if (5 < stack_size && stack_size <= 100)
-		return (3);
-	else
-		return (4);
-}
-
-void	clear_stacks(t_list **stack_a, t_list **stack_b)
+void	clear_stacks(t_greedy **stack_a, t_greedy **stack_b)
 {
 	if (*stack_a)
-		ft_lstclear(stack_a, free);
+		lstclear(stack_a, free);
 	if (*stack_b)
-		ft_lstclear(stack_b, free);
+		lstclear(stack_b, free);
 }

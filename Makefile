@@ -11,6 +11,8 @@ SRCS = debug.c \
 		push_swap_utils2.c \
 		push_swap_utils3.c \
 		push_swap_utils4.c \
+		greedy_utils1.c \
+		greedy_utils2.c \
 		sort_utils.c \
 		TwoElements.c
 
