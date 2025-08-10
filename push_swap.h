@@ -66,6 +66,8 @@ void	set_pos_a(t_greedy **stack_a, t_greedy **stack_b);
 void	setrank(t_greedy **stack_a);
 int		find_next_min_above(t_greedy *head, int last_min);
 void	assign_index_for_value(t_greedy *head, int val, int *idx, int *last_min);
+void	reload_data(t_greedy **stack_a, t_greedy **stack_b);
+void	set_target_pos_b(t_greedy **stack_a, t_greedy *stack_b);
 
 //  helper funct (REMOVE LATER)
 
