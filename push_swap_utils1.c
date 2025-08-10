@@ -4,25 +4,25 @@
 
 void	sa(t_greedy **stack_a)
 {
-	void	*content;
+	int	value;
 
 	if (!stack_a || !*stack_a || !(*stack_a)->next)
 		return ;
-	content = (*stack_a)->content;
-	(*stack_a)->content = (*stack_a)->next->content;
-	(*stack_a)->next->content = content;
+	value = (*stack_a)->value;
+	(*stack_a)->value = (*stack_a)->next->value;
+	(*stack_a)->next->value = value;
 	ft_printf("sa\n");
 }
 
 void	sb(t_greedy **stack_b)
 {
-	void	*content;
+	int	value;
 
 	if (!stack_b || !*stack_b || !(*stack_b)->next)
 		return ;
-	content = (*stack_b)->content;
-	(*stack_b)->content = (*stack_b)->next->content;
-	(*stack_b)->next->content = content;
+	value = (*stack_b)->value;
+	(*stack_b)->value = (*stack_b)->next->value;
+	(*stack_b)->next->value = value;
 	ft_printf("sb\n");
 }
 

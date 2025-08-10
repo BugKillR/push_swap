@@ -6,17 +6,22 @@
 
 typedef struct greedy_list
 {
-	int					*content;
+	int					value;
 	int					index;
+	
+	int					pos_a;
+	int					target_pos_b;
+
 	int					cost_a;
 	int					cost_b;
 	int					totalcost;
+
 	struct greedy_list	*next;
 }						t_greedy;
 
 //	t_greedy functions
 
-t_greedy	*lstnew(void *content);
+t_greedy	*lstnew(int value);
 void		lstadd_front(t_greedy **lst, t_greedy *new);
 int			lstsize(t_greedy *lst);
 void		lstadd_back(t_greedy **lst, t_greedy *new);
@@ -50,11 +55,17 @@ void	rrr(t_greedy **stack_a, t_greedy **stack_b);
 //  other functions
 
 void		clear_stacks(t_greedy **stack_a, t_greedy **stack_b);
-int			insertElements(t_greedy **stack_a, t_greedy **stack_b, char **argv);
+int			insert_elements(t_greedy **a, t_greedy **b, char **argv);
 int			checkinput(char *str);
 int			findmin(t_greedy *stack);
 
 //	sort
+
+void    two_elements(t_greedy **stack_a);
+void	set_pos_a(t_greedy **stack_a, t_greedy **stack_b);
+void	setrank(t_greedy **stack_a);
+int		find_next_min_above(t_greedy *head, int last_min);
+void	assign_index_for_value(t_greedy *head, int val, int *idx, int *last_min);
 
 //  helper funct (REMOVE LATER)
 

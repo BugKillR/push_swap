@@ -14,14 +14,14 @@ int	lstsize(t_greedy *lst)
 	return (i);
 }
 
-t_greedy	*lstnew(void *content)
+t_greedy	*lstnew(int value)
 {
 	t_greedy	*head;
 
 	head = (t_greedy *)malloc(sizeof(t_greedy));
 	if (!head)
 		return (NULL);
-	head->content = content;
+	head->value = value;
 	head->next = NULL;
 	return (head);
 }
@@ -30,7 +30,6 @@ void	lstdelone(t_greedy *lst, void (*del)(void *))
 {
 	if (!lst || !del)
 		return ;
-	del(lst->content);
 	free(lst);
 }
 

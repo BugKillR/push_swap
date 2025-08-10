@@ -13,7 +13,8 @@ SRCS = debug.c \
 		push_swap_utils4.c \
 		greedy_utils1.c \
 		greedy_utils2.c \
-		sort_utils.c \
+		sort_utils1.c \
+		sort_utils2.c \
 		TwoElements.c
 
 OBJS = $(SRCS:.c=.o)

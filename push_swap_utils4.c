@@ -2,30 +2,22 @@
 #include "./ft_printf/ft_printf.h"
 #include "push_swap.h"
 
-int	insertElements(t_greedy **stack_a, t_greedy **stack_b, char **argv) // burada kaldın, lstnew'i t_greedy'e göre yeniden yaz
+int	insert_elements(t_greedy **a, t_greedy **b, char **argv)
 {
-	int	*a;
 	int	i;
 	
 	i = 0;
-	*stack_a = NULL;
-	*stack_b = NULL;
+	*a = NULL;
+	*b = NULL;
 	while (argv[i])
 	{
 		if (!checkinput(argv[i]))
 		{
 			ft_printf("Error\n");
-			lstclear(stack_a, free);
+			lstclear(a, free);
 			return (0);
 		}
-		a = malloc(sizeof(int));
-		if (!a)
-		{
-			lstclear(stack_a, free);
-			return (0);
-		}
-		*a = ft_atoi(argv[i]);
-		lstadd_back(stack_a, lstnew(a));
+		lstadd_back(a, lstnew(ft_atoi(argv[i])));
 		i++;
 	}
 	return (1);
