@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kkeskin <kkeskin@student.42istanbul.com.t  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/14 20:34:11 by kkeskin           #+#    #+#             */
+/*   Updated: 2025/08/14 20:34:11 by kkeskin          ###   ########.tr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "./libft/libft.h"
@@ -8,7 +20,7 @@ typedef struct greedy_list
 {
 	int					value;
 	int					index;
-	
+
 	int					pos_a;
 	int					pos_b;
 	int					target_pos_b;
@@ -30,49 +42,50 @@ void		lstdelone(t_greedy *lst, void (*del)(void *));
 void		lstclear(t_greedy **lst, void (*del)(void *));
 t_greedy	*lstlast(t_greedy *lst);
 
-//  swap operations
-
-void	sa(t_greedy **stack_a);
-void	sb(t_greedy **stack_b);
-void	ss(t_greedy **stack_a, t_greedy **stack_b);
-
 //  push operations
 
-void	pa(t_greedy **stack_a, t_greedy **stack_b);
-void	pb(t_greedy **stack_b, t_greedy **stack_a);
+void		pa(t_greedy **stack_a, t_greedy **stack_b);
+void		pb(t_greedy **stack_b, t_greedy **stack_a);
 
 //  rotate operations
 
-void	ra(t_greedy **stack_a);
-void	rb(t_greedy **stack_b);
-void	rr(t_greedy **stack_a, t_greedy **stack_b);
+void		ra(t_greedy **stack_a, int canprint);
+void		rb(t_greedy **stack_b, int canprint);
+void		rr(t_greedy **stack_a, t_greedy **stack_b);
 
 //  reverse rotate operations
 
-void	rra(t_greedy **stack_a);
-void	rrb(t_greedy **stack_b);
-void	rrr(t_greedy **stack_a, t_greedy **stack_b);
+void		rra(t_greedy **stack_a, int canprint);
+void		rrb(t_greedy **stack_b, int canprint);
+void		rrr(t_greedy **stack_a, t_greedy **stack_b);
 
-//  other functions
+//  helper functions
 
 void		clear_stacks(t_greedy **stack_a, t_greedy **stack_b);
-int			insert_elements(t_greedy **a, t_greedy **b, char **argv);
-int			checkinput(char *str);
+int			insert_elements(t_greedy **a, char **argv);
 int			findmin(t_greedy *stack);
+int			findmax(t_greedy *stack);
+t_greedy	*find_by_index_b(t_greedy *b, int i);
 
-//	sort
+//	sort (Reload Data, Push to B while sorting, Push back to a and reorder)
 
-void	setrank(t_greedy **stack_a);
-void	set_pos(t_greedy *stack_a, t_greedy *stack_b);
-void	set_cost(t_greedy *a, t_greedy *b);
-void	set_target_pos_b(t_greedy *stack_a, t_greedy *stack_b);
-void	reload_data(t_greedy **stack_a, t_greedy **stack_b);
+void		push_first_two(t_greedy **a, t_greedy **b);
 
-int		is_stack_sorted(t_greedy *stack);
+void		reload_data(t_greedy **stack_a, t_greedy **stack_b);
+void		setrank(t_greedy **stack_a);
+void		set_pos(t_greedy *stack_a, t_greedy *stack_b);
+void		set_target_pos_b(t_greedy *stack_a, t_greedy *stack_b);
+void		set_cost(t_greedy *a, t_greedy *b);
 
-//  helper funct (REMOVE LATER)
+void		push_all_to_b(t_greedy **a, t_greedy **b);
+t_greedy	*find_cheapest(t_greedy *s);
 
-void	print_stacks(t_greedy *stack_a, t_greedy *stack_b);
-void	print_struct(t_greedy *stack_a, t_greedy *stack_b);
+void		execute_operations(t_greedy **a, t_greedy **b, t_greedy *cheapest);
+void		if_rr_or_rrr(t_greedy **a, t_greedy **b, t_greedy *c);
+
+void		push_all_to_a(t_greedy **a, t_greedy **b);
+void		reorder_b(t_greedy **stack_b);
+
+int			sort_small(t_greedy **stack_a);
 
 #endif

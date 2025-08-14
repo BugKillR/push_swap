@@ -15,7 +15,10 @@
 
 # include <stdarg.h>
 
-# define INT_MIN -2147483648
+# ifndef INT_MIN
+#  define INT_MIN -2147483648
+# endif
+
 # define HEXA_UPPER "0123456789ABCDEF"
 # define HEXA_LOWER "0123456789abcdef"
 # define DECIMAL "0123456789"

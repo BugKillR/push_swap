@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_utils1.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kkeskin <kkeskin@student.42istanbul.com.t  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/14 19:54:30 by kkeskin           #+#    #+#             */
+/*   Updated: 2025/08/14 19:54:30 by kkeskin          ###   ########.tr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./libft/libft.h"
 #include "./ft_printf/ft_printf.h"
 #include "push_swap.h"
@@ -25,26 +37,49 @@ int	findmin(t_greedy *stack)
 	return (index);
 }
 
+int	findmax(t_greedy *stack)
+{
+	int	max;
+	int	index;
+	int	k;
+
+	max = stack->value;
+	stack = stack->next;
+	index = 0;
+	k = 1;
+	while (stack)
+	{
+		if (max < stack->value)
+		{
+			max = stack->value;
+			index = k;
+		}
+		stack = stack->next;
+		k++;
+	}
+	return (index);
+}
+
 static int	find_next_min_above(t_greedy *head, int last_min)
 {
 	t_greedy	*temp;
 	int			curmin;
-	
+
 	curmin = 2147483647;
 	temp = head;
 	while (temp)
 	{
 		if (temp->value > last_min && temp->value < curmin)
-		curmin = temp->value;
+			curmin = temp->value;
 		temp = temp->next;
 	}
 	return (curmin);
 }
 
-static void	assign_index_for_value(t_greedy *head, int val, int *idx, int *last_min)
+static void	assign_index(t_greedy *head, int val, int *idx, int *last_min)
 {
 	t_greedy	*temp;
-	
+
 	temp = head;
 	while (temp)
 	{
@@ -77,6 +112,6 @@ void	setrank(t_greedy **stack_a)
 		curmin = find_next_min_above(head, last_min);
 		if (curmin == 2147483647)
 			break ;
-		assign_index_for_value(head, curmin, &index, &last_min);
+		assign_index(head, curmin, &index, &last_min);
 	}
 }

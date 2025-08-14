@@ -1,5 +1,15 @@
-#include "./libft/libft.h"
-#include "./ft_printf/ft_printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kkeskin <kkeskin@student.42istanbul.com.t  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/14 19:48:06 by kkeskin           #+#    #+#             */
+/*   Updated: 2025/08/14 19:48:07 by kkeskin          ###   ########.tr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	main(int argc, char *argv[])
@@ -7,20 +17,20 @@ int	main(int argc, char *argv[])
 	t_greedy	*stack_a;
 	t_greedy	*stack_b;
 
+	stack_a = NULL;
+	stack_b = NULL;
 	if (argc < 2)
 		return (1);
 	argv++;
-	if (!insert_elements(&stack_a, &stack_b, argv))
+	if (!insert_elements(&stack_a, argv))
 		return (1);
+	if (sort_small(&stack_a))
+		return (0);
 	setrank(&stack_a);
-	pb(&stack_b, &stack_a);
-	pb(&stack_b, &stack_a);
-	if (stack_b->index < stack_b->next->index)
-		rb(&stack_b);
-	print_stacks(stack_a, stack_b);
-	reload_data(&stack_a, &stack_b);
-	print_struct(stack_a, stack_b);
-	//print_stacks(stack_a, stack_b);
+	push_first_two(&stack_a, &stack_b);
+	push_all_to_b(&stack_a, &stack_b);
+	reorder_b(&stack_b);
+	push_all_to_a(&stack_a, &stack_b);
 	clear_stacks(&stack_a, &stack_b);
 	return (0);
 }

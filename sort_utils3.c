@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_utils3.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kkeskin <kkeskin@student.42istanbul.com.t  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/14 20:03:09 by kkeskin           #+#    #+#             */
+/*   Updated: 2025/08/14 20:03:10 by kkeskin          ###   ########.tr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./libft/libft.h"
 #include "./ft_printf/ft_printf.h"
 #include "push_swap.h"
@@ -27,62 +39,47 @@ void	set_pos(t_greedy *stack_a, t_greedy *stack_b)
 	}
 }
 
+static void	target_pos_b_helper(t_greedy *a, t_greedy *b)
+{
+	int			found;
+
+	found = 0;
+	while (b->next)
+	{
+		if (b->value >= a->value && a->value >= b->next->value)
+		{
+			a->target_pos_b = b->pos_b + 1;
+			found = 1;
+			break ;
+		}
+		b = b->next;
+	}
+	if (!found)
+		a->target_pos_b = 0;
+}
+
 void	set_target_pos_b(t_greedy *a, t_greedy *stack_b)
 {
-	t_greedy	*b;
-	int			pos;
+	t_greedy	*max;
+	t_greedy	*min;
+	int			size;
 
+	size = lstsize(stack_b);
+	max = find_by_index_b(stack_b, findmax(stack_b));
+	min = find_by_index_b(stack_b, findmin(stack_b));
 	while (a)
 	{
-		pos = 0;
-		b = stack_b;
-		while (b)
+		if (max->value < a->value)
+			a->target_pos_b = max->pos_b;
+		else if (min->value > a->value)
 		{
-			if (b->index > a->index)
-			{
-				b = b->next;
-				pos++;
-			}
+			if (min->pos_b == size - 1)
+				a->target_pos_b = 0;
 			else
-				break ;
+				a->target_pos_b = min->pos_b + 1;
 		}
-		a->target_pos_b = pos;
-		a = a->next;
-	}
-}
-
-static void	set_totalcost(t_greedy *a)
-{
-	if ((a->cost_a >= 0 && a->cost_b >= 0)
-		|| (a->cost_a < 0 && a->cost_b < 0))
-	{
-		if (ft_abs(a->cost_a) > ft_abs(a->cost_b))
-			a->totalcost = ft_abs(a->cost_a);
 		else
-			a->totalcost = ft_abs(a->cost_b);
-	}
-	else
-		a->totalcost = ft_abs(a->cost_a) + ft_abs(a->cost_b);
-}
-
-void	set_cost(t_greedy *a, t_greedy *b)
-{
-	int	size_a;
-	int	size_b;
-
-	size_a = lstsize(a);
-	size_b = lstsize(b);
-	while (a)
-	{
-		if (a->pos_a <= size_a / 2)
-			a->cost_a = a->pos_a;
-		else
-			a->cost_a = -(size_a - a->pos_a);
-		if (a->target_pos_b <= size_b / 2)
-			a->cost_b = a->target_pos_b;
-		else
-			a->cost_b = -(size_b - a->target_pos_b);
-		set_totalcost(a);
+			target_pos_b_helper(a, stack_b);
 		a = a->next;
 	}
 }

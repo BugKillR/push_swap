@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   greedy_list2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkeskin <kkeskin@student.42istanbul.com.t  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 14:18:50 by kkeskin           #+#    #+#             */
-/*   Updated: 2025/06/10 14:19:00 by kkeskin          ###   ########.fr       */
+/*   Created: 2025/08/14 19:45:41 by kkeskin           #+#    #+#             */
+/*   Updated: 2025/08/14 19:45:42 by kkeskin          ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	lstadd_front(t_greedy **lst, t_greedy *new)
 {
-	void	*ptr;
+	if (!lst || !new)
+		return ;
+	new->next = *lst;
+	*lst = new;
+}
 
-	ptr = (void *)malloc(nmemb * size);
-	if (!ptr)
+t_greedy	*lstlast(t_greedy *lst)
+{
+	if (!lst)
 		return (NULL);
-	ft_bzero(ptr, (nmemb * size));
-	return (ptr);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }
