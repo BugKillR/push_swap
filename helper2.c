@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf/ft_printf.h"
 #include "push_swap.h"
 
 void	push_all_to_a(t_greedy **a, t_greedy **b)
@@ -35,6 +36,8 @@ int	sort_small(t_greedy **a)
 	int	stack_size;
 
 	stack_size = lstsize(*a);
+	if (!*a || !a)
+		return (ft_printf("Error\n"), 1);
 	if (stack_size == 1)
 	{
 		clear_stacks(a, NULL);
