@@ -19,3 +19,21 @@ void	print_stacks(t_greedy *stack_a, t_greedy *stack_b)
 	}
 	ft_printf("\n\n");
 }
+
+void	print_struct(t_greedy *stack_a, t_greedy *stack_b)
+{
+	t_greedy	*temp;
+
+	temp = stack_a;
+	while (temp)
+	{
+		ft_printf("\n\nContent: %d\nRank: %d\nPos_a: %d\nPos_b: %d\nPos_target_b: %d\nCost_a: %d\nCost_b: %d\nTotalCost: %d\n", temp->value, temp->index, temp->pos_a, temp->pos_b, temp->target_pos_b, temp->cost_a, temp->cost_b, temp->totalcost);
+		temp = temp->next;
+	}
+	temp = stack_b;
+	while (temp)
+	{
+		ft_printf("\n\nContent: %d\nRank: %d\nPos_a: %d\nPos_b: %d\nPos_target_b: %d\nCost_a: %d\nCost_b: %d\nTotalCost: %d\n", temp->value, temp->index, temp->pos_a, temp->pos_b, temp->target_pos_b, temp->cost_a, temp->cost_b, temp->totalcost);
+		temp = temp->next;
+	}
+}

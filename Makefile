@@ -15,7 +15,8 @@ SRCS = debug.c \
 		greedy_utils2.c \
 		sort_utils1.c \
 		sort_utils2.c \
-		TwoElements.c
+		sort_utils3.c \
+		sort_utils4.c
 
 OBJS = $(SRCS:.c=.o)
 
