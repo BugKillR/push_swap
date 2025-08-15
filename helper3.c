@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   helper3.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kkeskin <kkeskin@student.42istanbul.com.t  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/15 13:04:26 by kkeskin           #+#    #+#             */
+/*   Updated: 2025/08/15 13:04:30 by kkeskin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./libft/libft.h"
 
 int	atoi_limits(const char *str, int *out)
@@ -20,7 +32,7 @@ int	atoi_limits(const char *str, int *out)
 	while (*str >= '0' && *str <= '9')
 	{
 		num = num * 10 + (*str - '0');
-		if ((sign == 1 && num > INT_MAX) || (sign == -1 && -num < INT_MIN))
+		if ((sign == 1 && num > INT_MAX) || (sign == -1 && -(num) < INT_MIN))
 			return (0);
 		str++;
 	}

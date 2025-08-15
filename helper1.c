@@ -103,8 +103,8 @@ int	insert_elements(t_greedy **a, char **argv)
 		if (!checkinput(arr[i]))
 			return (ft_printf("Error\n"), free_double_arr(arr),
 				lstclear(a, free), 0);
-		if(!atoi_limits(arr[i], &convert))
-			return(ft_printf("Error\n"), free_double_arr(arr),
+		if (!atoi_limits(arr[i], &convert))
+			return (ft_printf("Error\n"), free_double_arr(arr),
 				lstclear(a, free), 0);
 		lstadd_back(a, lstnew(convert));
 		i++;

@@ -6,7 +6,7 @@
 /*   By: kkeskin <kkeskin@student.42istanbul.com.t  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:28:29 by kkeskin           #+#    #+#             */
-/*   Updated: 2025/06/10 15:28:30 by kkeskin          ###   ########.fr       */
+/*   Updated: 2025/08/15 13:06:43 by kkeskin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <stdlib.h>
 
 # ifndef INT_MIN
-#  define INT_MIN (-2147483647 - 1)
+#  define INT_MIN -2147483648
 # endif
 # ifndef INT_MAX
 #  define INT_MAX 2147483647
