@@ -46,7 +46,7 @@ static int	apply_op(t_greedy **a, t_greedy **b, const char *s)
 	return (0);
 }
 
-static void	read_stdin(t_greedy **a, t_greedy **b)
+static int	read_stdin(t_greedy **a, t_greedy **b)
 {
 	char	*read;
 
@@ -55,11 +55,11 @@ static void	read_stdin(t_greedy **a, t_greedy **b)
 	{
 		if (*read)
 		{
-			if (!apply_op(&a, &b, read))
+			if (!apply_op(a, b, read))
 			{
 				free(read);
-				lstclear(&a, free);
-				lstclear(&b, free);
+				lstclear(a, free);
+				lstclear(b, free);
 				ft_printf("Error\n");
 				return (1);
 			}
@@ -67,6 +67,7 @@ static void	read_stdin(t_greedy **a, t_greedy **b)
 		free(read);
 		read = get_next_line(0);
 	}
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -80,7 +81,8 @@ int	main(int argc, char **argv)
 		return (0);
 	if (!insert_elements_checker(&a, argv + 1))
 		return (1);
-	read_stdin(&a, &b);
+	if (read_stdin(&a, &b))
+		return (1);
 	if (is_sorted(a) && !b)
 		ft_printf("OK\n");
 	else
