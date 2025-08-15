@@ -24,7 +24,9 @@ int	main(int argc, char *argv[])
 	argv++;
 	if (!insert_elements(&stack_a, argv))
 		return (1);
-	if (sort_small(&stack_a))
+	if (is_sorted(stack_a))
+		return (1);
+	if (sort_small(&stack_a, &stack_b))
 		return (0);
 	setrank(&stack_a);
 	push_first_two(&stack_a, &stack_b);

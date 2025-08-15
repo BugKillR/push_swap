@@ -42,6 +42,12 @@ void		lstdelone(t_greedy *lst, void (*del)(void *));
 void		lstclear(t_greedy **lst, void (*del)(void *));
 t_greedy	*lstlast(t_greedy *lst);
 
+//	swap operations
+
+void		sa(t_greedy **stack_a, int print);
+void		sb(t_greedy **stack_b, int print);
+void		ss(t_greedy **stack_a, t_greedy **stack_b, int p);
+
 //  push operations
 
 void		pa(t_greedy **stack_a, t_greedy **stack_b, int print);
@@ -91,6 +97,11 @@ void		if_rr_or_rrr(t_greedy **a, t_greedy **b, t_greedy *c);
 void		push_all_to_a(t_greedy **a, t_greedy **b);
 void		reorder_b(t_greedy **stack_b);
 
-int			sort_small(t_greedy **stack_a);
+int			sort_small(t_greedy **a, t_greedy **b);
+int			sort_mid(t_greedy **a, t_greedy **b);
+void		sort_three(t_greedy **a);
+void		sort_four(t_greedy **a, t_greedy **b);
+void		sort_five(t_greedy **a, t_greedy **b);
+int			is_sorted(t_greedy *stack);
 
 #endif

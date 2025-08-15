@@ -31,7 +31,7 @@ void	push_all_to_b(t_greedy **a, t_greedy **b)
 	}
 }
 
-int	sort_small(t_greedy **a)
+int	sort_small(t_greedy **a, t_greedy **b)
 {
 	int	stack_size;
 
@@ -40,15 +40,18 @@ int	sort_small(t_greedy **a)
 		return (ft_printf("Error\n"), 1);
 	if (stack_size == 1)
 	{
-		clear_stacks(a, NULL);
-		return (1);
+		return (clear_stacks(a, NULL), 1);
 	}
 	else if (stack_size == 2)
 	{
 		if ((*a)->value > (*a)->next->value)
 			ra(a, 1);
-		clear_stacks(a, NULL);
-		return (1);
+		return (clear_stacks(a, NULL), 1);
+	}
+	else if (stack_size < 6)
+	{
+		if (sort_mid(a, b))
+			return (clear_stacks(a, b), 1);
 	}
 	return (0);
 }

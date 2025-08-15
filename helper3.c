@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
+#include "push_swap.h"
 
 int	atoi_limits(const char *str, int *out)
 {
@@ -38,4 +39,19 @@ int	atoi_limits(const char *str, int *out)
 	}
 	*out = (int)(num * sign);
 	return (1);
+}
+
+int	sort_mid(t_greedy **a, t_greedy **b)
+{
+	int	i;
+
+	(void)b;
+	i = lstsize(*a);
+	if (i == 3)
+		return (sort_three(a), 1);
+	else if (i == 4)
+		return (sort_four(a, b), 1);
+	else if (i == 5)
+		return (sort_five(a, b), 1);
+	return (0);
 }

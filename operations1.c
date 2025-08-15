@@ -13,6 +13,40 @@
 #include "./ft_printf/ft_printf.h"
 #include "push_swap.h"
 
+void	sa(t_greedy **stack_a, int print)
+{
+	int	value;
+
+	if (!stack_a || !*stack_a || !(*stack_a)->next)
+		return ;
+	value = (*stack_a)->value;
+	(*stack_a)->value = (*stack_a)->next->value;
+	(*stack_a)->next->value = value;
+	if (print)
+		ft_printf("sa\n");
+}
+
+void	sb(t_greedy **stack_b, int print)
+{
+	int	value;
+
+	if (!stack_b || !*stack_b || !(*stack_b)->next)
+		return ;
+	value = (*stack_b)->value;
+	(*stack_b)->value = (*stack_b)->next->value;
+	(*stack_b)->next->value = value;
+	if (print)
+		ft_printf("sb\n");
+}
+
+void	ss(t_greedy **stack_a, t_greedy **stack_b, int p)
+{
+	sa(stack_a, 0);
+	sb(stack_b, 0);
+	if (p)
+		ft_printf("ss\n");
+}
+
 void	pa(t_greedy **stack_a, t_greedy **stack_b, int print)
 {
 	t_greedy	*stack_b_next;

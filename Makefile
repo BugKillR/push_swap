@@ -13,6 +13,7 @@ SRCS = greedy_list1.c \
 		helper1.c \
 		helper2.c \
 		helper3.c \
+		helper4.c \
 		operations1.c \
 		operations2.c \
 		operations3.c \

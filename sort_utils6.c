@@ -58,3 +58,16 @@ void	execute_operations(t_greedy **a, t_greedy **b, t_greedy *cheapest)
 		pb(b, a, 1);
 	}
 }
+
+int	is_sorted(t_greedy *stack)
+{
+	if (!stack)
+		return (0);
+	while (stack->next)
+	{
+		if (stack->value > stack->next->value)
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
+}

@@ -12,19 +12,6 @@
 
 #include "checker.h"
 
-int	is_sorted(t_greedy *stack)
-{
-	if (!stack)
-		return (0);
-	while (stack->next)
-	{
-		if (stack->value > stack->next->value)
-			return (0);
-		stack = stack->next;
-	}
-	return (1);
-}
-
 static int	apply_op(t_greedy **a, t_greedy **b, const char *s)
 {
 	if (!ft_strncmp(s, "rra", 3))
