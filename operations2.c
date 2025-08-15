@@ -45,9 +45,10 @@ void	rb(t_greedy **stack_b, int canprint)
 		ft_printf("rb\n");
 }
 
-void	rr(t_greedy **stack_a, t_greedy **stack_b)
+void	rr(t_greedy **stack_a, t_greedy **stack_b, int print)
 {
 	ra(stack_a, 0);
 	rb(stack_b, 0);
-	ft_printf("rr\n");
+	if (print)
+		ft_printf("rr\n");
 }

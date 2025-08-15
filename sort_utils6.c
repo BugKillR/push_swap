@@ -50,11 +50,11 @@ void	execute_operations(t_greedy **a, t_greedy **b, t_greedy *cheapest)
 		|| (c->cost_a < 0 && c->cost_b < 0))
 	{
 		if_rr_or_rrr(a, b, c);
-		pb(b, a);
+		pb(b, a, 1);
 	}
 	else
 	{
 		operate_rx_rrx(a, b, c);
-		pb(b, a);
+		pb(b, a, 1);
 	}
 }

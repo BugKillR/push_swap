@@ -44,20 +44,20 @@ t_greedy	*lstlast(t_greedy *lst);
 
 //  push operations
 
-void		pa(t_greedy **stack_a, t_greedy **stack_b);
-void		pb(t_greedy **stack_b, t_greedy **stack_a);
+void		pa(t_greedy **stack_a, t_greedy **stack_b, int print);
+void		pb(t_greedy **stack_b, t_greedy **stack_a, int print);
 
 //  rotate operations
 
 void		ra(t_greedy **stack_a, int canprint);
 void		rb(t_greedy **stack_b, int canprint);
-void		rr(t_greedy **stack_a, t_greedy **stack_b);
+void		rr(t_greedy **stack_a, t_greedy **stack_b, int print);
 
 //  reverse rotate operations
 
 void		rra(t_greedy **stack_a, int canprint);
 void		rrb(t_greedy **stack_b, int canprint);
-void		rrr(t_greedy **stack_a, t_greedy **stack_b);
+void		rrr(t_greedy **stack_a, t_greedy **stack_b, int print);
 
 //  helper functions
 
@@ -66,6 +66,11 @@ int			insert_elements(t_greedy **a, char **argv);
 int			findmin(t_greedy *stack);
 int			findmax(t_greedy *stack);
 t_greedy	*find_by_index_b(t_greedy *b, int i);
+char		**makearr(char **argv);
+int			checkinput(char *str);
+void		free_double_arr(char **arr);
+int			handle_clone_input(t_greedy *a);
+int			atoi_limits(const char *str, int *out);
 
 //	sort (Reload Data, Push to B while sorting, Push back to a and reorder)
 

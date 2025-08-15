@@ -14,7 +14,7 @@
 #include "./ft_printf/ft_printf.h"
 #include "push_swap.h"
 
-static char	**makearr(char **argv)
+char	**makearr(char **argv)
 {
 	char	**arr;
 	char	*join;
@@ -35,7 +35,7 @@ static char	**makearr(char **argv)
 	return (arr);
 }
 
-static int	checkinput(char *str)
+int	checkinput(char *str)
 {
 	int	i;
 
@@ -55,7 +55,7 @@ static int	checkinput(char *str)
 	return (1);
 }
 
-static void	handle_convert_error(char **arr)
+void	free_double_arr(char **arr)
 {
 	int	k;
 
@@ -68,7 +68,7 @@ static void	handle_convert_error(char **arr)
 	free(arr);
 }
 
-static int	handle_clone_input(t_greedy *a)
+int	handle_clone_input(t_greedy *a)
 {
 	t_greedy	*temp;
 	int			curval;
@@ -91,6 +91,7 @@ static int	handle_clone_input(t_greedy *a)
 int	insert_elements(t_greedy **a, char **argv)
 {
 	char	**arr;
+	int		convert;
 	int		i;
 
 	arr = makearr(argv);
@@ -100,16 +101,15 @@ int	insert_elements(t_greedy **a, char **argv)
 	while (arr[i])
 	{
 		if (!checkinput(arr[i]))
-		{
-			ft_printf("Error\n");
-			handle_convert_error(arr);
-			lstclear(a, free);
-			return (0);
-		}
-		lstadd_back(a, lstnew(ft_atoi(arr[i])));
+			return (ft_printf("Error\n"), free_double_arr(arr),
+				lstclear(a, free), 0);
+		if(!atoi_limits(arr[i], &convert))
+			return(ft_printf("Error\n"), free_double_arr(arr),
+				lstclear(a, free), 0);
+		lstadd_back(a, lstnew(convert));
 		i++;
 	}
-	handle_convert_error(arr);
+	free_double_arr(arr);
 	if (handle_clone_input(*a))
 		return (ft_printf("Error\n"), 0);
 	return (1);

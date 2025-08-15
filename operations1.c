@@ -13,7 +13,7 @@
 #include "./ft_printf/ft_printf.h"
 #include "push_swap.h"
 
-void	pa(t_greedy **stack_a, t_greedy **stack_b)
+void	pa(t_greedy **stack_a, t_greedy **stack_b, int print)
 {
 	t_greedy	*stack_b_next;
 
@@ -22,10 +22,11 @@ void	pa(t_greedy **stack_a, t_greedy **stack_b)
 	stack_b_next = (*stack_b)->next;
 	lstadd_front(stack_a, *stack_b);
 	*stack_b = stack_b_next;
-	ft_printf("pa\n");
+	if (print)
+		ft_printf("pa\n");
 }
 
-void	pb(t_greedy **stack_b, t_greedy **stack_a)
+void	pb(t_greedy **stack_b, t_greedy **stack_a, int print)
 {
 	t_greedy	*stack_a_next;
 
@@ -34,5 +35,6 @@ void	pb(t_greedy **stack_b, t_greedy **stack_a)
 	stack_a_next = (*stack_a)->next;
 	lstadd_front(stack_b, *stack_a);
 	*stack_a = stack_a_next;
-	ft_printf("pb\n");
+	if (print)
+		ft_printf("pb\n");
 }

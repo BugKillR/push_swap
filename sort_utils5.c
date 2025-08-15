@@ -20,7 +20,7 @@ static void	if_rr_a_bigger(t_greedy **a, t_greedy **b, t_greedy *c)
 	execboth = ft_abs(c->cost_b);
 	execonly = ft_abs(c->cost_a) - ft_abs(c->cost_b);
 	while (execboth--)
-		rr(a, b);
+		rr(a, b, 1);
 	while (execonly--)
 		ra(a, 1);
 }
@@ -33,7 +33,7 @@ static void	if_rr_b_bigger(t_greedy **a, t_greedy **b, t_greedy *c)
 	execboth = ft_abs(c->cost_a);
 	execonly = ft_abs(c->cost_b) - ft_abs(c->cost_a);
 	while (execboth--)
-		rr(a, b);
+		rr(a, b, 1);
 	while (execonly--)
 		rb(b, 1);
 }
@@ -46,7 +46,7 @@ static void	if_rrr_a_bigger(t_greedy **a, t_greedy **b, t_greedy *c)
 	execboth = ft_abs(c->cost_b);
 	execonly = ft_abs(c->cost_a) - ft_abs(c->cost_b);
 	while (execboth--)
-		rrr(a, b);
+		rrr(a, b, 1);
 	while (execonly--)
 		rra(a, 1);
 }
@@ -59,7 +59,7 @@ static void	if_rrr_b_bigger(t_greedy **a, t_greedy **b, t_greedy *c)
 	execboth = ft_abs(c->cost_a);
 	execonly = ft_abs(c->cost_b) - ft_abs(c->cost_a);
 	while (execboth--)
-		rrr(a, b);
+		rrr(a, b, 1);
 	while (execonly--)
 		rrb(b, 1);
 }

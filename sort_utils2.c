@@ -54,8 +54,8 @@ void	reorder_b(t_greedy **stack_b)
 
 void	push_first_two(t_greedy **a, t_greedy **b)
 {
-	pb(b, a);
-	pb(b, a);
+	pb(b, a, 1);
+	pb(b, a, 1);
 	if ((*b)->index < (*b)->next->index)
 		rb(b, 1);
 }

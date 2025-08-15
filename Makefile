@@ -6,10 +6,13 @@ LIBFT = $(LIBFT_DIR)/libft.a
 PRINTF_DIR = ./ft_printf
 PRINTF = $(PRINTF_DIR)/libftprintf.a
 
+CHECKER_DIR = ./checker_
+
 SRCS = greedy_list1.c \
 		greedy_list2.c \
 		helper1.c \
 		helper2.c \
+		helper3.c \
 		operations1.c \
 		operations2.c \
 		operations3.c \
@@ -37,16 +40,21 @@ $(LIBFT):
 $(PRINTF):
 	make -C $(PRINTF_DIR) all
 
+bonus: all
+	make -C $(CHECKER_DIR) all
+
 clean:
 	make -C $(LIBFT_DIR) clean
 	make -C $(PRINTF_DIR) clean
+	make -C $(CHECKER_DIR) clean
 	rm -rf $(OBJS)
 
 fclean: clean
 	make -C $(PRINTF_DIR) fclean
 	make -C $(LIBFT_DIR) fclean
-	rm -rf $(NAME) push_swap.a
+	make -C $(CHECKER_DIR) fclean
+	rm -rf $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re libft
+.PHONY: all bonus clean fclean re

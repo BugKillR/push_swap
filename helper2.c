@@ -16,7 +16,7 @@
 void	push_all_to_a(t_greedy **a, t_greedy **b)
 {
 	while (*b)
-		pa(a, b);
+		pa(a, b, 1);
 }
 
 void	push_all_to_b(t_greedy **a, t_greedy **b)
