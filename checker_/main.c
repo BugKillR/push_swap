@@ -30,6 +30,12 @@ static int	apply_op(t_greedy **a, t_greedy **b, const char *s)
 		return (rb(b, 0), 1);
 	else if (!ft_strncmp(s, "rr", 2))
 		return (rr(a, b, 0), 1);
+	else if (!ft_strncmp(s, "sa", 2))
+		return (sa(a, 0), 1);
+	else if (!ft_strncmp(s, "sb", 2))
+		return (sb(b, 0), 1);
+	else if (!ft_strncmp(s, "ss", 2))
+		return (ss(a, b, 0), 1);
 	return (0);
 }
 
@@ -47,7 +53,7 @@ static int	read_stdin(t_greedy **a, t_greedy **b)
 				free(read);
 				lstclear(a, free);
 				lstclear(b, free);
-				ft_printf("Error\n");
+				ft_printf("KO\n");
 				return (1);
 			}
 		}
