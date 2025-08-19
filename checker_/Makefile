@@ -12,19 +12,15 @@ PRINTF = $(PRINTF_DIR)/ft_printf.a
 PUSH_SWAP_DIR = ..
 PUSH_SWAP = $(PUSH_SWAP_DIR)/push_swap.a
 
-SRCS	= checker.c
-
 GNL_DIR = ../get_next_line
 GNL = $(GNL_DIR)/get_next_line.a
-
-OBJS	= $(SRCS:.c=.o)
 
 all: $(NAME)
 	$(CC) $(CFLAGS) main.c checker.a -o checker
 	mv checker ..
 
-$(NAME): $(OBJS) $(LIBFT) $(PRINTF) $(PUSH_SWAP) $(GNL)
-	ar rcs $(NAME) $(OBJS) $(LIBFT_DIR)/*.o $(PRINTF_DIR)/*.o $(PUSH_SWAP_DIR)/*.o $(GNL_DIR)/*.o 
+$(NAME): $(LIBFT) $(PRINTF) $(PUSH_SWAP) $(GNL)
+	ar rcs $(NAME) $(LIBFT_DIR)/*.o $(PRINTF_DIR)/*.o $(PUSH_SWAP_DIR)/*.o $(GNL_DIR)/*.o 
 
 $(LIBFT):
 	make -C $(LIBFT_DIR) all
@@ -40,7 +36,7 @@ $(GNL):
 
 clean:
 	make -C $(GNL_DIR) clean
-	rm -rf $(OBJS) $(GNL_OBJS)
+	rm -rf $(GNL_OBJS)
 
 fclean: clean
 	make -C $(GNL_DIR) fclean
